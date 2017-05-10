@@ -1,0 +1,14 @@
+<aside class="sidebar">
+  <div class="middle-header">
+    <div id="profile-image">
+      <a href="{{ "/" | relative_url }}"><img src="{{ "/assets/images/me_new-cropped.jpg" | relative_url }}" alt=""></a>
+    </div>
+    <h1><a class="site-title" href="{{ "/" | relative_url }}">Lee Freeman</a></h1>
+    <div class="social-icons">
+      <ul>
+        <li>{% include icon-github.html username=site.github_username %}</li>
+        <li>{% include icon-twitter.html username=site.twitter_username %}</li>
+      </ul>
+    </div>
+  </div>
+</aside>
