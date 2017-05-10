@@ -34,6 +34,5 @@ defaults:
 
 # Build settings
 markdown: kramdown
-gems:
-  - ['jekyll-feed', 'kramdown']
+gems: ['jekyll-feed', 'kramdown']
 exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefile']
