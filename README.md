@@ -4,6 +4,6 @@ This is a Jekyll replica of my personal blog's WordPress theme [Hamilton](https:
 
 ### TO-DO
 
-- [ ] Make responsive SCSS.
-- [ ] Deploy it.
-- [ ] Weep at how beautifully fast it is.
+- [X] Make responsive SCSS.
+- [X] Deploy it.
+- [X] Weep at how beautifully fast it is.
