@@ -1,6 +1,6 @@
 {
   "name": "leefreemanxyz",
-  "short_name": "leefreemanxyz",
+  "short_name": "lfxyz",
   "theme_color": "#009688",
   "background_color": "#80cbc4",
   "display": "standalone",
@@ -42,6 +42,12 @@
      "sizes": "192x192",
      "type": "image\/png",
      "density": "4.0"
-    }
+   },
+   {
+    "src": "assets/images/favicon_images/android-icon-512x512.png",
+    "sizes": "512x512",
+    "type": "image\/png",
+    "density": "4.0"
+   }
   ]
 }
