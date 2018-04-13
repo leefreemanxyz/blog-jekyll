@@ -144,3 +144,5 @@ export default class AboutMe extends Component {
 {% endhighlight %}
 
 That's about it for the demo. The code is available on [my GitHub](https://github.com/leefreemanxyz/react-context-multilingual). Any questions, comments or concerns, please open an issue there.
+
+[Link to demo.](https://react-context-demo.leefreeman.xyz/)
