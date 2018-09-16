@@ -1,24 +1,23 @@
 /*
 *  Sidebar
 */
-@mixin center-menu{
-    width: fit-content;
-    margin: auto;
-}
+
 .sidebar {
   background-color: $brand-color;
-  min-width: 200px;
+  min-width: 250px;
 }
 .middle-header{
   position:fixed;
-  padding-left:25px;
-  @include center-menu;
+  min-width:250px;
   display:flex;
   flex-direction: column;
-  h1 .site-title {
-    text-transform: uppercase;
-    color: white;
-  }
+  align-items:center;
+    h1 .site-title {
+      text-transform: uppercase;
+      color: white;
+    }
+
+  
 }
 .social-icons ul {
   //  @include center-menu;

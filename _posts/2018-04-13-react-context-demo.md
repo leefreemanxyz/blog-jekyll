@@ -7,7 +7,7 @@ categories: code
 
 React's new Context API was finally made available with React 16.3 two weeks ago, and I was working on a client's multilingual site that was passing the locale information through the props of every component. The context API seemed like a fairly decent way of avoiding having to pass the props like this, so this is my super quick implementation of how to do just that.
 
-<!-- more-->
+<!--more-->
 
 After running create-react-app, you want to create your React Context. So, in my /src folder, I created a simple file called `locale-context.js` and exported my LocaleContext: 
 

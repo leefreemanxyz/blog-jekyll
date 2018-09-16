@@ -222,5 +222,6 @@
 #content-container {
   display:flex;
   justify-content: space-between;
-  background-color: $brand-lighter;
+  max-width: 960px;
+  margin:0 auto;
 }
