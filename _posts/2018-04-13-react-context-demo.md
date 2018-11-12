@@ -11,15 +11,15 @@ React's new Context API was finally made available with React 16.3 two weeks ago
 
 After running create-react-app, you want to create your React Context. So, in my /src folder, I created a simple file called `locale-context.js` and exported my LocaleContext: 
 
-{% highlight javascript %}
+``` jsx
 import React from 'react'
 
 export const LocaleContext = React.createContext()
-{% endhighlight %}
+```
 
 Cool. Now I'm going to import the LocaleContext into my `App.js` and wrap everything inside it.
 
-{% highlight javascript %}
+``` jsx
 
 import React, { Component } from "react";
 import { LocaleContext } from "./locale-context";
@@ -46,13 +46,13 @@ export default class App extends Component {
   }
 }
 
-{% endhighlight %}
+```
 
 So, what's happening here? In my app's state I'm storing the preferred locale of my user. When working on this for a client, I store the preferred locale in localStorage and initialize it in my Redux store and pass it into the value of my provider through props, so it works across page reloads etc. 
 
 I've got a function to update the locale, and I pass this into the props of `SomeContainer`. Cool.
 
-{% highlight javascript %}
+``` jsx
 import React, { Component } from "react";
 import LanguagePicker from "./LanguagePicker";
 import AboutMe from "./AboutMe";
@@ -77,13 +77,13 @@ export default class SomeContainer extends Component {
   }
 }
 
-{% endhighlight %}
+```
 
 This is the `SomeContainer` component. I'm importing two components to display information and a `LanguagePicker` component, which I'm passing the change language function into. As you can see, the `AboutMe` and `WhereIAmFrom` components are not having information about languages passed to them. They'll be using context to access it.
 
 This demo has a folder called `locales` that contains a json file for each language, and a `Translate` component. The json files should have all the same keys, but the values will be translated for each language. 
 
-{% highlight javascript %}
+``` javascript
 import React, { Component } from "react";
 import { LocaleContext } from "../locale-context";
 
@@ -113,13 +113,13 @@ export default class Translate extends Component {
   }
 }
 
-{% endhighlight %}
+```
 
 This is my `Translate` component. The render function is simply consuming the `LocaleContext` and using its value and the key for the string passed into the component as a prop to find the correct translation from our .json files. I imagine there is a way to do this without state, but let's not worry about that for now.
 
 I won't go into the `LanguagePicker`, it should be fairly self-explanatory. Whenever you want to render a multilingual string, you import the `Translate` component and pass it the key for the string as it is found in your .json files.
 
-{% highlight javascript%}
+```javascript
 import React, {Component} from 'react'
 import  Translate  from './locales/Translate';
 
@@ -141,7 +141,7 @@ export default class AboutMe extends Component {
         )
     }
 }
-{% endhighlight %}
+```
 
 That's about it for the demo. The code is available on [my GitHub](https://github.com/leefreemanxyz/react-context-multilingual). Any questions, comments or concerns, please open an issue there.
 
