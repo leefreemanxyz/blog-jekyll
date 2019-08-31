@@ -1,0 +1,72 @@
+I"F<p>You’re on the home straight. Your tests are green. Your code is splitting. Lighthouse/Pagespeed/other performance metrics love you. And then you get the call – it’s marketing. They have <em>just a few</em> scripts they want to add. Bundle-bloat isn’t the worst of it - custom events are needed.</p>
+
+<!--more-->
+
+<p>So, after dutifully adding a few scripts from marketing to the head tag, it turns out you aren’t quite finished. As your single-page app doesn’t really have any new page loads, the analytics scripts don’t really behave like they’re supposed to.</p>
+
+<p>To fix this, you’re asked to add a few custom events and, if you’ve ever wandered into some legacy codebase, there is a more than reasonable chance that you’ll find component files with custom events inside them. It will look something like this:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// index.js</span>
+<span class="kd">class</span> <span class="nx">SearchBar</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+    
+    <span class="p">...</span>
+
+    <span class="nx">doSearch</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">doSearch</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">someParams</span><span class="p">)</span>
+
+        <span class="c1">// analytics hell</span>
+        <span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+            <span class="dl">'</span><span class="s1">search</span><span class="dl">'</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">search</span><span class="p">,</span>
+            <span class="dl">'</span><span class="s1">autocompleted</span><span class="dl">'</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">autocompleted</span>
+            <span class="p">});</span>
+
+    <span class="p">}</span>
+
+    <span class="nx">render</span><span class="p">(){</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This works, but I don’t particularly like it. My issues with it are:</p>
+
+<ul>
+  <li>I think tracking is a separate concern to the rest of your app.</li>
+  <li>Operationally, development and marketing are typically separated and tracking events can be a last minute addition or afterthought.</li>
+  <li>Developers are unlikely to have any real say about which tracking technology gets used, so it’s not ideal to have it scattered all over your codebase.</li>
+</ul>
+
+<p>Now, the first thing any modern javascript developer is going to do when asked to add Google Analytics/Tag Manager etc., is check for an NPM package (i.e. <code class="highlighter-rouge">react-ga</code>). But let’s look at how we can do this without adding an NPM package. Instead, let’s use a sexy ES6 class.</p>
+
+<p>Mozilla Developer Network describes classes as <code class="highlighter-rouge">primarily syntactical sugar over JavaScript's existing prototype-based inheritance</code>. Sounds great. What we can do is create a class for all our custom tracking events, which is awesome because:</p>
+
+<ul>
+  <li>it abstracts this gross tracking code away from our beautiful component code and moves it into one or a few dedicated files.</li>
+  <li>it’s easier to unit test this file with a single responsibility.</li>
+  <li>it’s convenient to make changes to a custom event, or even change analytics providers entirely.</li>
+  <li>it doesn’t really matter where you want to fire events from - middleware/redux/view layers - they now share a common interface with the tracking functions.</li>
+</ul>
+
+<p>This tracking class could look something like this:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// tracking.js</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">TrackingService</span> <span class="p">{</span>
+    <span class="cm">/*
+     * document what params are expected
+     */</span>
+    <span class="kd">static</span> <span class="nx">searchEvent</span> <span class="o">=</span> <span class="p">({</span><span class="nx">search</span><span class="p">,</span><span class="nx">autocompleted</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+            <span class="dl">'</span><span class="s1">search</span><span class="dl">'</span><span class="p">:</span> <span class="nx">search</span><span class="p">,</span>
+            <span class="dl">'</span><span class="s1">autocompleted</span><span class="dl">'</span><span class="p">:</span> <span class="nx">autocompleted</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+    <span class="c1">// some more tracking events.</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Wherever you want to call this custom event, make sure you’ve imported <code class="highlighter-rouge">TrackingService</code>, and then just call the static class method as <code class="highlighter-rouge">TrackingService.searchEvent({search,autocompleted})</code>.</p>
+
+<p>You can now fire events with a single line of code from wherever is most convenient or makes the most sense in your codebase, and you can find and debug issues with your colleagues in marketing and look super smart and organized while doing so.</p>
+
+<p>Comments, concerns and typos can be directed to the usual channels in the header!</p>
+:ET

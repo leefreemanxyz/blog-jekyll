@@ -1,0 +1,137 @@
+I"�?<p>React’s new Context API was finally made available with React 16.3 two weeks ago, and I was working on a client’s multilingual site that was passing the locale information through the props of every component. The context API seemed like a fairly decent way of avoiding having to pass the props like this, so this is my super quick implementation of how to do just that.</p>
+
+<!--more-->
+
+<p>After running create-react-app, you want to create your React Context. So, in my /src folder, I created a simple file called <code class="highlighter-rouge">locale-context.js</code> and exported my LocaleContext:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">LocaleContext</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createContext</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Cool. Now I’m going to import the LocaleContext into my <code class="highlighter-rouge">App.js</code> and wrap everything inside it.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">LocaleContext</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./locale-context</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">SomeContainer</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./SomeContainer</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">App</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">preferredLocale</span><span class="p">:</span> <span class="dl">"</span><span class="s2">en</span><span class="dl">"</span>
+    <span class="p">};</span>
+  <span class="p">}</span>
+  <span class="nx">changeLanguage</span> <span class="o">=</span> <span class="p">({</span> <span class="na">currentTarget</span><span class="p">:</span> <span class="p">{</span> <span class="nx">id</span> <span class="p">}</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+      <span class="na">preferredLocale</span><span class="p">:</span> <span class="nx">id</span>
+    <span class="p">});</span>
+  <span class="p">};</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nc">LocaleContext</span><span class="p">.</span><span class="nc">Provider</span> <span class="na">value=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">preferredLocale</span><span class="si">}</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">SomeContainer</span> <span class="na">changeLanguage=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">changeLanguage</span><span class="si">}</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">LocaleContext</span><span class="p">.</span><span class="nc">Provider</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>So, what’s happening here? In my app’s state I’m storing the preferred locale of my user. When working on this for a client, I store the preferred locale in localStorage and initialize it in my Redux store and pass it into the value of my provider through props, so it works across page reloads etc.</p>
+
+<p>I’ve got a function to update the locale, and I pass this into the props of <code class="highlighter-rouge">SomeContainer</code>. Cool.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">LanguagePicker</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./LanguagePicker</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">AboutMe</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./AboutMe</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">WhereIAmFrom</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./WhereIAmFrom</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">styles</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">app</span><span class="p">:{</span>
+        <span class="na">textAlign</span><span class="p">:</span><span class="dl">'</span><span class="s1">center</span><span class="dl">'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">SomeContainer</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style=</span><span class="si">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">app</span><span class="si">}</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>About me<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">LanguagePicker</span> <span class="na">changeLanguage=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">changeLanguage</span><span class="si">}</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nc">AboutMe</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nc">WhereIAmFrom</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>This is the <code class="highlighter-rouge">SomeContainer</code> component. I’m importing two components to display information and a <code class="highlighter-rouge">LanguagePicker</code> component, which I’m passing the change language function into. As you can see, the <code class="highlighter-rouge">AboutMe</code> and <code class="highlighter-rouge">WhereIAmFrom</code> components are not having information about languages passed to them. They’ll be using context to access it.</p>
+
+<p>This demo has a folder called <code class="highlighter-rouge">locales</code> that contains a json file for each language, and a <code class="highlighter-rouge">Translate</code> component. The json files should have all the same keys, but the values will be translated for each language.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">LocaleContext</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../locale-context</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="nx">en</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./en.json</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">es</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./es.json</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">nl</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./nl.json</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">Translate</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">langs</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nx">en</span><span class="p">,</span>
+        <span class="nx">es</span><span class="p">,</span>
+        <span class="nx">nl</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+  <span class="p">}</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="p">{</span><span class="nx">langs</span><span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span> 
+      <span class="kd">const</span> <span class="p">{</span><span class="nx">string</span><span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">LocaleContext</span><span class="p">.</span><span class="nx">Consumer</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">value</span> <span class="o">=&gt;</span> <span class="nx">langs</span><span class="p">[</span><span class="nx">value</span><span class="p">][</span><span class="nx">string</span><span class="p">]}</span>
+      <span class="o">&lt;</span><span class="sr">/LocaleContext.Consumer</span><span class="err">&gt;
+</span>    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>This is my <code class="highlighter-rouge">Translate</code> component. The render function is simply consuming the <code class="highlighter-rouge">LocaleContext</code> and using its value and the key for the string passed into the component as a prop to find the correct translation from our .json files. I imagine there is a way to do this without state, but let’s not worry about that for now.</p>
+
+<p>I won’t go into the <code class="highlighter-rouge">LanguagePicker</code>, it should be fairly self-explanatory. Whenever you want to render a multilingual string, you import the <code class="highlighter-rouge">Translate</code> component and pass it the key for the string as it is found in your .json files.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">Component</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<span class="k">import</span>  <span class="nx">Translate</span>  <span class="k">from</span> <span class="dl">'</span><span class="s1">./locales/Translate</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">styles</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">aboutMe</span><span class="p">:{</span>
+        <span class="na">border</span><span class="p">:</span> <span class="dl">'</span><span class="s1">3px solid black</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">margin</span><span class="p">:</span> <span class="dl">'</span><span class="s1">0 25%</span><span class="dl">'</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">AboutMe</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+    <span class="nx">render</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">aboutMe</span><span class="p">}</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;&lt;</span><span class="nx">Translate</span> <span class="nx">string</span><span class="o">=</span><span class="p">{</span><span class="dl">'</span><span class="s1">about-me.name</span><span class="dl">'</span><span class="p">}</span><span class="sr">/&gt;&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;&lt;</span><span class="nx">Translate</span> <span class="nx">string</span><span class="o">=</span><span class="p">{</span><span class="dl">'</span><span class="s1">about-me.age</span><span class="dl">'</span><span class="p">}</span><span class="sr">/&gt;&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;&lt;</span><span class="nx">Translate</span> <span class="nx">string</span><span class="o">=</span><span class="p">{</span><span class="dl">'</span><span class="s1">about-me.education</span><span class="dl">'</span><span class="p">}</span><span class="sr">/&gt;&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>That’s about it for the demo. The code is available on <a href="https://github.com/leefreemanxyz/react-context-multilingual">my GitHub</a>. Any questions, comments or concerns, please open an issue there.</p>
+
+<p><a href="https://react-context-demo.leefreeman.xyz/">Link to demo.</a></p>
+:ET
