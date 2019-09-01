@@ -17,7 +17,7 @@ title: Lee Freeman – Web Developer
 email: lee.freeman1@gmail.com
 description: Lee Freeman is a web developer currently based in Amsterdam. He enjoys working with javascript, React, Redux, Ruby, Rails and Node. 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://example.com"
+url: "https://leefreeman.xyz"
 twitter_username: leefreemanxyz
 github_username:  leefreemanxyz
 excerpt_separator: <!--more-->
