@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Multiline strings in GraphQL with Neo4J"
-date: 2020-05-07 12:00:00 +0200
+date: 2020-05-07
 tags: graphql,neo4j,javascript
 ---
 
@@ -30,7 +30,7 @@ const types = gql`
 
 The `similar` field is resolved using this custom @cypher directive, and while this is quite a simple query, it's easy to find yourself writing much longer and more complex queries and you can't just stick a line break in there. So here are two solutions.
 
-Despite working with GraphQL so much over the last year, I'm sure I haven't even scratched the surface of what it's capable of, and one of those things is how it supports multiline strings or [Block Strings](https://spec.graphql.org/June2018/#BlockStringCharacter), by wrapping the string in triple quotation marks """. I'd seen this syntax in our Python loading scripts for Neo4J, and hadn't realised that the same syntax was available with GraphQL (and, after all, as a Javascript/Typescript developer, I would normally just use a template literal for multiline blocks). So, the example above can be rewritten as:
+Despite working with GraphQL so much over the last year, I'm sure I haven't even scratched the surface of what it's capable of, and one of those things is how it supports multiline strings or [Block Strings](https://spec.graphql.org/June2018/#BlockStringCharacter), by wrapping the string in triple quotation marks """. I'd seen this syntax in our Python loading scripts for Neo4J, and hadn't realised that the same syntax was available with GraphQL (and, after all, as a JavaScript/TypeScript developer, I would normally just use a template literal for multiline blocks). So, the example above can be rewritten as:
 
 ```
 const types = gql`

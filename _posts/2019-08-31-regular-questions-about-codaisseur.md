@@ -18,7 +18,7 @@ My first employer post-Codaisseur attended my graduation/demo night and approach
 <br/>
 <details>
 <summary>Is the course difficult?</summary>
-I had been teaching myself to code (Javascript) for around 18 months before starting Codaisseur and I did not find the course particularly challenging (though it is a hell of a lot of work).
+I had been teaching myself to code (JavaScript) for around 18 months before starting Codaisseur and I did not find the course particularly challenging (though it is a hell of a lot of work).
 
 My experience is not typical – most people I know who have taken the course since have struggled more with the intensity and number of new concepts being introduced.
 
