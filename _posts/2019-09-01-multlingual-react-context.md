@@ -2,7 +2,7 @@
 layout: post
 title: "Using React Hooks and Context to build a multilingual site"
 date: 2019-09-01 12:00:00 +0200
-categories: code
+tags: code
 ---
 
 I wrote a post about using React's at-the-time new Context API to deal with translating text strings throughout a React app. Looking back, I think a lot can be improved upon, so here we go.
@@ -90,35 +90,35 @@ This results in a wasted extra render (updateLanguage is called in response to b
 
 Perhaps we could look at returning early from our updateLanguage function if the current language and newly selected one are the same? This might look something like this, but it doesn't run on first render:
 
-	const updateLanguage = useCallback(
-		async (newLang) => {
-			if (newLang === language) return
-			const newStrings = await fetchTranslations({ language: newLang })
-			setLanguage({
-				language: newLang,
-				strings: newStrings
-			})
-		},
-		[language, fetchTranslations]
-	)
+    const updateLanguage = useCallback(
+    	async (newLang) => {
+    		if (newLang === language) return
+    		const newStrings = await fetchTranslations({ language: newLang })
+    		setLanguage({
+    			language: newLang,
+    			strings: newStrings
+    		})
+    	},
+    	[language, fetchTranslations]
+    )
 
-Let's fix this with a useRef! The value of useRef will be maintained across renders, but changing its value won't result in a re-render, so we're good. 
+Let's fix this with a useRef! The value of useRef will be maintained across renders, but changing its value won't result in a re-render, so we're good.
 
-	const initialStringsLoaded = useRef(false)
+    const initialStringsLoaded = useRef(false)
 
-	const updateLanguage = useCallback(
-		async (newLang) => {
-			if (initialStringsLoaded.current && newLang === language) return
-			const newStrings = await fetchTranslations({ language: newLang })
-			initialStringsLoaded.current = true
-			setLanguage({
-				language: newLang,
-				strings: newStrings
-			})
-		},
-		[language, fetchTranslations]
-	)
+    const updateLanguage = useCallback(
+    	async (newLang) => {
+    		if (initialStringsLoaded.current && newLang === language) return
+    		const newStrings = await fetchTranslations({ language: newLang })
+    		initialStringsLoaded.current = true
+    		setLanguage({
+    			language: newLang,
+    			strings: newStrings
+    		})
+    	},
+    	[language, fetchTranslations]
+    )
 
 And there you have it, all the code you need to get up and running with a multilingual React app with no external dependencies. You can check the full code in [this repo](https://github.com/leefreemanxyz/multilingual-react-with-hooks-and-context).
 
-Any comments, questions or concerns should be directed to my Twitter or GitHub. 
+Any comments, questions or concerns should be directed to my Twitter or GitHub.

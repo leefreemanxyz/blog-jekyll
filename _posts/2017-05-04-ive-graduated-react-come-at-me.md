@@ -1,9 +1,10 @@
 ---
 layout: post
-title:  "I'VE GRADUATED! React, come at me!"
-date:   2017-05-04 12:00:00 +0200
-categories: learn-to-code
+title: "I'VE GRADUATED! React, come at me!"
+date: 2017-05-04 12:00:00 +0200
+tags: learn-to-code
 ---
+
 So, the whole blogging all the way through the course thing didn't really work out. Things really kicked up a notch once we moved into the advanced bootcamp, and I didn't really have time for coding and writing. Sorry about that!
 
 If you don't read any further than this, I'm currently looking for a job to put these new skills to good use. [Here's my GitHub](https://github.com/leefreemanxyz), I'm really interested in React-y/ES6-y roles, so show me what you've got.
@@ -13,6 +14,7 @@ If you don't read any further than this, I'm currently looking for a job to put 
 I should probably reflect on what happened for the rest of the course.
 
 ## Week 5
+
 Week 5 started with a day working on algorithms. We were introduced to some of my new best friends for when working on arrays:
 
 - `filter` - creates a new array containing all the elements of an array passed to it that pass a test
@@ -24,11 +26,13 @@ On top of this, we looked at recursion, where your function calls itself repeate
 Throughout the rest of the week we started looking at React, Redux, before moving onto using the Feathers framework so we could quickly get some RESTful services up and running. Feathers also supports web sockets, so I mainly just web socketed things pretty much all the time for the next few weeks.
 
 ## Week 6
+
 During Week 6 we started to look at what else back-end javascript has to offer. We looked at how Feathers lets you use before and after hooks to transform, validate, make all sorts of changes to data on its way into or out of the database. These hooks are evidently pretty powerful, but they felt far less intuitive than the front-end React/Redux stuff that we'd been working on.
 
 The rest of the week was spent working in pairs on 2-player real-time games. It's safe to say that my game was way too ambitious for the 3/4 days that we had to work on it. If anyone ever suggests to you to try and make Scrabble in your browser before the end of week, just decline.
 
 ## Week 7
+
 Easter Monday took a day off the start of this week so, to make up for it, we were given a written test on everything we had covered since the start of the course, before being given our final assignments. The assignment was to create an app which would enable teachers to create pairs of students for each day and, of course, each pair couldn't meet again until they had been matched with all the other students. This was an easy task to mess up – we could choose our own technology, could work from wherever we liked and weren't working in pairs any more.
 
 I spent most of Tuesday flipping back and forth between using Rails or Feathers for the back-end of the application. I knew I wanted to do React on the front end, but given my experiences in Week 6 with Feathers hooks, I was a little bit apprehensive about relying on it for my final assignment. I thought using React with Rails would be a really nice way to make use of what we'd been taught over the whole course. As it turned out, there are plenty of gotchas in Rails when you want to run it as an API (e.g. when trying to use Devise). By the end of Tuesday I had something up and running (I started off with just creating users and allowing admins to promote or demote any user from/to an admin status).
@@ -40,6 +44,7 @@ I needed to have everything finished by Thursday at 6pm so I could go to the Dig
 Final evaluation on Friday morning, job done.
 
 ## Week 8
+
 After a relaxing weekend, it was right back to it. Four external product owners came in and pitched what they wanted us to make. I chose to work on a map for AMSxTech of tech companies in Amsterdam. It felt like it was probably the most challenging project, and a chance to flex our React skills at the showcase on Friday. Anika and Paula did some really awesome work getting Google Maps integrated into some React components, while I spent a lot of time building out our back-end using Feathers and whipping together the Redux functions.
 
 Having King's Day right in the middle of the project was hardly ideal, but as I recovered from King's Night, I managed to write a load of code for placing filters on the map markers. At this point, we basically had something to show, but we didn't really have any markers. We didn't have any real-life data to show off – plenty of companies are very happy to sell you the data as a service, but they were hardly going to let us export their entire datasets when signed up to a free trial (I know, I was shocked too). I found a directory of marketing agencies in Amsterdam online, taught myself just enough Python to be dangerous, so I could scrape it all and turn it into JSON (which then let us seed it in our database).
@@ -47,6 +52,7 @@ Having King's Day right in the middle of the project was hardly ideal, but as I 
 Demo night was a really nice experience as we got to see the hard work that everyone else had put in during the week. Luckily, our demo all worked fine (and we could all have a good laugh about the admin panel of 'chaos'). [Check out what we showed off at demo night](http://amsxtechmap.bitballoon.com/) (you might need to refresh it – the back-end is hosted on Heroku and it goes to sleep every 30 minutes!).
 
 ## Life beyond the Academy
+
 So now I guess I have to go get a job, right? Well, yes, but until that sorts itself out, I'm working on some bits and pieces for my portfolio. I think there are four things I really want to get sorted:
 
 - the 'Codaisseurify' app. [Well, mine has gotten a bit out of hand](https://github.com/leefreemanxyz/codaisseurify). The database is now populated when I play songs in Spotify, and each individual playback of a song is logged against my user. I need to sort out what data I'm going to expose as an endpoint and that should be largely done.

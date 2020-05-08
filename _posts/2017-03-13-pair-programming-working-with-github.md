@@ -1,9 +1,10 @@
 ---
 layout: post
-title:  "Pair programming, flexbox & working with GitHub!"
-date:   2017-03-13 12:00:00 +0200
-categories: learn-to-code
+title: "Pair programming, flexbox & working with GitHub!"
+date: 2017-03-13 12:00:00 +0200
+tags: learn-to-code
 ---
+
 So my first week of [Codaisseur's academy/bootcamp](https://www.codaisseur.com/) was a great success! I think the time spent on the [Learn.co Bootcamp Prep](http://learn.co/) has really paid off and I'd definitely recommend it to anyone thinking about a bootcamp or about to embark on one.
 
 The week started last Sunday and ran through until Friday evening. After a lovely day in Utrecht on the Saturday followed by taking it very easy at a friend's birthday party on the Saturday evening, bright-eyed and bushy tailed, I turned up at the TQ building for 9.30am.
@@ -13,6 +14,7 @@ After a brief induction session (don't be a dick, treat the building/people with
 <!--more-->
 
 ## Emmet
+
 Yeah, it's not just the main character from the Lego Movie, but it's also an awesome tool for writing HTML. Essentially, you write an expression, press tab and it expands it all into full HTML tags.
 
 With Emmet, you can write something like `(div.row>div.col-md-6+div.col-md-3)*4` and it will expand into 4 divs with the class `row`, each with 2 child divs, the first with the class `col-md-9` and the other with `col-md-3`. The &gt; indicates a child tag, while the + indicates siblings. This was a really simple example. You can also add an 'id' to each tag using the `#` symbol and the name of the id.
@@ -26,6 +28,7 @@ So, what do we do with flexbox? You apply the attribute `display:flex` to a par
 Monday to Wednesday were spent working with Ruby on the command line. I have mixed feelings about it to be honest. I found it really useful creating classes in Ruby to take do some object-oriented programming, and I think it lays a good foundation for working with Rails (but it can be a little tiresome when I really just wanna get started making some web apps!).
 
 ## Ruby on Rails
+
 Yes. Thursday brought us Ruby on Rails, and it is quite simply magical. It's really, really smart, and took very little time to get up and running making associations between classes and creating my [Valley of Dinosaurs](https://github.com/leefreemanxyz/valleys-of-dinosaurs) and [Cities of Monsters](https://github.com/leefreemanxyz/cities-of-monsters) apps.
 
 This also involved our first introduction the MVC design pattern. Obviously there are variants, but this pattern is very popular, so it's really important to get familiar with it.
@@ -40,6 +43,7 @@ If you're just getting started with Rails, the our teacher Miriam really drilled
 So, what route is being called? Now, think about the controller and action you're calling. Are you asking your model to speak to the database? Now, how is that being displayed in your view? Breaking it down like this and working through the flow of data and what instructions you're giving should really make it clear when you're trying to make heads or tails of your web app. Failing that, just read the Rails error messages and just develop by fixing what it tells you.
 
 ## Pair programming
+
 Wow, so Friday was the final day of Week 1, and we were working in groups to implement what we had learned that week. One of the main experiences I really wanted to get out of the course was working in groups. I imagine it's a problem for many self-taught developers – you work alone and there is no real judge of the quality of your code. I mean, sure, you can submit it to the internet, but I think it takes a lot of bravery to put yourself out there and request feedback.
 
 So part of our task was to share laptops and pair program, and I have to say, it's a completely novel experience for me, and I can't help but wonder what this sort of practice would involve in my previous career (and yes, it feels good to write that).  What other careers might it work (or not work) in?
@@ -51,6 +55,7 @@ In trying out pair programming, I thought it was an interesting experiment and i
 While we were pair programming though, we were also working simultaneously with another pair on our project, which leads me to...
 
 ## GitHub
+
 GitHub is amazing. In my *previous career* we used an absolutely god-awful bit of software to use called Documentum. It only worked in Internet Explorer and required Java to work. It completely sucked. Luckily my project didn't involve using it that much because *reasons*.
 
 And now here I am using GitHub. I talked about it in my previous post. Branch it, add it, commit it, push it. Amazing. But now we've got other people using it too and it's really awesome to see how to deal with merge conflicts and pull requests really works. It really emphasized the importance of making small branches so that submitted code is easier to review (and I know that I'd rather have a quick look at 3 lines of submitted code than 300).

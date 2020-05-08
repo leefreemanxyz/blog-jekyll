@@ -1,9 +1,10 @@
 ---
 layout: post
-title:  "Shopping carts, APIs, a dash of JS and rebuilding Taste of Code"
-date:   2017-04-02 12:00:00 +0200
-categories: learn-to-code
+title: "Shopping carts, APIs, a dash of JS and rebuilding Taste of Code"
+date: 2017-04-02 12:00:00 +0200
+tags: learn-to-code
 ---
+
 Well, it's two weeks since my last post and I'm now halfway through Codaisseur's two-month web developer academy. I. Am. Ex. Haus. Ted. Admittedly, I'm not making it easy for myself – in the week before last I went to developer meetups on Tuesday and Wednesday, and had scheduled two for the last week (though I ended up sacking off the AmsterdamJS one on Thursday  ¯\\\_(ツ)\_/¯ ).
 
 <!--more-->

@@ -2,7 +2,7 @@
 layout: post
 title: "Multiline strings in GraphQL with Neo4J"
 date: 2020-05-07 12:00:00 +0200
-categories: graphql,neo4j,javascript
+tags: graphql,neo4j,javascript
 ---
 
 For the last year or so I've been working with GraphQL with NodeJS quite a lot, both as a wrapper around some REST microservices and with the graph database Neo4J. While it hasn't been a problem with the REST microservice project, line length has been a real problem when working with Neo4J schemas. This week I've found out two ways to solve this.

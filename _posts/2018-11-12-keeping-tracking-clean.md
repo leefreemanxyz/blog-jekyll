@@ -1,22 +1,22 @@
 ---
 layout: post
-title:  "Keeping tracking clean in an SPA"
-date:   2018-11-12 12:00:00 +0200
-categories: code
+title: "Keeping tracking clean in an SPA"
+date: 2018-11-12 12:00:00 +0200
+tags: code
 ---
 
-You're on the home straight. Your tests are green. Your code is splitting. Lighthouse/Pagespeed/other performance metrics love you. And then you get the call – it's marketing. They have *just a few* scripts they want to add. Bundle-bloat isn't the worst of it - custom events are needed. 
+You're on the home straight. Your tests are green. Your code is splitting. Lighthouse/Pagespeed/other performance metrics love you. And then you get the call – it's marketing. They have _just a few_ scripts they want to add. Bundle-bloat isn't the worst of it - custom events are needed.
 
 <!--more-->
 
-So, after dutifully adding a few scripts from marketing to the head tag, it turns out you aren't quite finished. As your single-page app doesn't really have any new page loads, the analytics scripts don't really behave like they're supposed to. 
+So, after dutifully adding a few scripts from marketing to the head tag, it turns out you aren't quite finished. As your single-page app doesn't really have any new page loads, the analytics scripts don't really behave like they're supposed to.
 
 To fix this, you're asked to add a few custom events and, if you've ever wandered into some legacy codebase, there is a more than reasonable chance that you'll find component files with custom events inside them. It will look something like this:
 
-``` javascript
+```javascript
 // index.js
 class SearchBar extends React.Component {
-    
+
     ...
 
     doSearch = () => {
@@ -42,7 +42,7 @@ This works, but I don't particularly like it. My issues with it are:
 - Operationally, development and marketing are typically separated and tracking events can be a last minute addition or afterthought.
 - Developers are unlikely to have any real say about which tracking technology gets used, so it's not ideal to have it scattered all over your codebase.
 
-Now, the first thing any modern javascript developer is going to do when asked to add Google Analytics/Tag Manager etc., is check for an NPM package (i.e. `react-ga`). But let's look at how we can do this without adding an NPM package. Instead, let's use a sexy ES6 class. 
+Now, the first thing any modern javascript developer is going to do when asked to add Google Analytics/Tag Manager etc., is check for an NPM package (i.e. `react-ga`). But let's look at how we can do this without adding an NPM package. Instead, let's use a sexy ES6 class.
 
 Mozilla Developer Network describes classes as `primarily syntactical sugar over JavaScript's existing prototype-based inheritance`. Sounds great. What we can do is create a class for all our custom tracking events, which is awesome because:
 
@@ -53,23 +53,23 @@ Mozilla Developer Network describes classes as `primarily syntactical sugar over
 
 This tracking class could look something like this:
 
-``` jsx
+```jsx
 // tracking.js
 export default class TrackingService {
-    /*
-     * document what params are expected
-     */
-    static searchEvent = ({search,autocompleted}) => {
-        dataLayer.push({
-            'search': search,
-            'autocompleted': autocompleted
-        })
-    }
-    // some more tracking events.
+  /*
+   * document what params are expected
+   */
+  static searchEvent = ({ search, autocompleted }) => {
+    dataLayer.push({
+      search: search,
+      autocompleted: autocompleted,
+    });
+  };
+  // some more tracking events.
 }
 ```
 
-Wherever you want to call this custom event, make sure you've imported `TrackingService`, and then just call the static class method as `TrackingService.searchEvent({search,autocompleted})`. 
+Wherever you want to call this custom event, make sure you've imported `TrackingService`, and then just call the static class method as `TrackingService.searchEvent({search,autocompleted})`.
 
 You can now fire events with a single line of code from wherever is most convenient or makes the most sense in your codebase, and you can find and debug issues with your colleagues in marketing and look super smart and organized while doing so.
 

@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Amsterdam – one year on"
-date:   2017-08-03 12:00:00 +0200
-categories: moving-abroad
+title: "Amsterdam – one year on"
+date: 2017-08-03 12:00:00 +0200
+tags: moving-abroad
 ---
 
 It's been too long since my last post, but I think the one year anniversary of moving into this flat in Amsterdam is as good as any other to write something.
