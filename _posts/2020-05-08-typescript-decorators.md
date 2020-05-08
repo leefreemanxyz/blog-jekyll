@@ -9,6 +9,8 @@ So around November/December last year, I really felt like I was stagnating at wo
 
 So I signed up to Stephen Grider's [TypeScript: The Complete Developer's Guide](https://www.udemy.com/course/typescript-the-complete-developers-guide/) and I've been slowly working through it over the last few months. One of the sections later on in the course is about decorators. I'd seen decorators applied to React-Redux a couple of years ago and I didn't really understand them/see the need for them and they just generally seemed like confusing _magic_. Since then I've seen similar looking code in my backend colleague's Spring/Java code, in some Django project I worked with and when looking at some documentation for NestJS. It wasn't until doing the section of Stephen's course though that I began to understand them and see some uses for them.
 
+<!--more-->
+
 If you haven't used decorators in Typescript before, then [start with the documentation](https://www.typescriptlang.org/v2/docs/handbook/decorators.html), but here I'm using them to modify a class method.
 
 I've written previously about using Neo4J at work, and I'm trying it out for a personal project, importing data from a postgres database using the JDBC driver. For this sort of importing job, I'll create a base Neo4J class that accepts a Neo4J driver and add each step that I want to execute as a method to it.
