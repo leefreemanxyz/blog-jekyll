@@ -77,7 +77,7 @@ export class Neo4J {
 }
 ```
 
-When you call the runQuery() method from now on, you'll get some easy-to-digest information about how long each function took to run (and the code to modify this is neatly stored in just one place). Because this worked really well in Typescript for my use case, I looked up how to do the same thing in Python and opened a pull request at work to add the timestamps automatically (I borrowed some code I found online for this):
+When you call the `runQuery()` method from now on, you'll get some easy-to-digest information about how long each function took to run (and the code to modify this is neatly stored in just one place). Because this worked really well in Typescript for my use case, I looked up how to do the same thing in Python and opened a pull request at work to add the timestamps automatically (I borrowed some code I found online for this):
 
 ```
 from datetime import datetime
