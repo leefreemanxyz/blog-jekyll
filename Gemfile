@@ -9,7 +9,7 @@ ruby '2.6.2'
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem 'jekyll', '4.0.0'
+gem 'jekyll', '4.0.1'
 gem 'kramdown'
 gem 'puma'
 gem 'rack-jekyll'
