@@ -15,11 +15,12 @@
 # in the templates via {{ site.myvariable }}.
 title: Lee Freeman – Web Developer
 email: lee.freeman1@gmail.com
-description: Lee Freeman is a web developer currently based in Amsterdam. He enjoys working with javascript, React, Redux, Ruby, Rails and Node. 
+description: Lee Freeman is a web developer currently based in Amsterdam. He enjoys working with javascript, React, Redux, Ruby, Rails and Node.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://leefreeman.xyz"
+future: false
 twitter_username: leefreemanxyz
-github_username:  leefreemanxyz
+github_username: leefreemanxyz
 excerpt_separator: <!--more-->
 google_analytics: UA-70750559-1
 permalink: /:year/:month/:day/:title/
@@ -31,5 +32,6 @@ defaults:
 
 # Build settings
 markdown: kramdown
-gems: ['jekyll-sitemap','jekyll-feed', 'kramdown']
-exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefile']
+gems: ["jekyll-sitemap", "jekyll-feed", "kramdown"]
+exclude:
+  ["config.ru", "Gemfile", "Gemfile.lock", "vendor", "Procfile", "Rakefile"]
