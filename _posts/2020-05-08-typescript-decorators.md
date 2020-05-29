@@ -15,7 +15,7 @@ If you haven't used decorators in Typescript before, then [start with the docume
 
 I've written previously about using Neo4J at work, and I'm trying it out for a personal project, importing data from a postgres database using the JDBC driver. For this sort of importing job, I'll create a base Neo4J class that accepts a Neo4J driver and add each step that I want to execute as a method to it.
 
-```
+```ts
 export class Neo4J {
   constructor(public driver: Driver) {}
 
@@ -25,7 +25,6 @@ export class Neo4J {
       const res = await session.run(`
             // some cypher query
       `);
-
     } catch (error) {}
   }
 }
@@ -33,8 +32,7 @@ export class Neo4J {
 
 Now at work, we use Python to do the importing, and we call a logging function before and after each method, which prints a timestamp and a message. I didn't really like this approach though, as there's a lot of code repetition, so I decided to create a decorator factory for this (using a factory allows the message variable to be passed in for each method that it's decorating).
 
-```
-
+```ts
 export function createTimestamps(message: string) {
   return function (target: any, name: string, descriptor: PropertyDescriptor) {
     const method = descriptor.value;
@@ -60,18 +58,17 @@ export function createTimestamps(message: string) {
 
 This decorator logs the start time of a function, then calls it (with `await method.apply(this)`) and then logs the finish time and calculates how many milliseconds it took for the function to complete. To use it, import the `createTimestamps` function and _decorate_ the method you want to collect timestamps for.
 
-```
+```ts
 export class Neo4J {
   constructor(public driver: Driver) {}
 
-  @createTimestamps('Run query')
+  @createTimestamps("Run query")
   async runQuery() {
     try {
       const session = await this.driver.session();
       const res = await session.run(`
             // some cypher query
       `);
-
     } catch (error) {}
   }
 }
@@ -79,7 +76,7 @@ export class Neo4J {
 
 When you call the `runQuery()` method from now on, you'll get some easy-to-digest information about how long each function took to run (and the code to modify this is neatly stored in just one place). Because this worked really well in Typescript for my use case, I looked up how to do the same thing in Python and opened a pull request at work to add the timestamps automatically (I borrowed some code I found online for this):
 
-```
+```python
 from datetime import datetime
 
 import functools

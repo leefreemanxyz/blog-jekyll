@@ -13,50 +13,52 @@ When working with Neo4J I normally can let the library infer all my schemas and 
 
 Here is an example from their docs:
 
-```
+```js
 const types = gql`
-    type Movie {
+  type Movie {
     movieId: ID!
     title: String
     year: Int
     plot: String
     similar(first: Int = 3, offset: Int = 0): [Movie]
-        @cypher(
+      @cypher(
         statement: "MATCH (this)-[:IN_GENRE]->(:Genre)<-[:IN_GENRE]-(o:Movie) RETURN o ORDER BY COUNT(*) DESC"
-        )
-    }
-`
+      )
+  }
+`;
 ```
 
 The `similar` field is resolved using this custom @cypher directive, and while this is quite a simple query, it's easy to find yourself writing much longer and more complex queries and you can't just stick a line break in there. So here are two solutions.
 
 Despite working with GraphQL so much over the last year, I'm sure I haven't even scratched the surface of what it's capable of, and one of those things is how it supports multiline strings or [Block Strings](https://spec.graphql.org/June2018/#BlockStringCharacter), by wrapping the string in triple quotation marks """. I'd seen this syntax in our Python loading scripts for Neo4J, and hadn't realised that the same syntax was available with GraphQL (and, after all, as a JavaScript/TypeScript developer, I would normally just use a template literal for multiline blocks). So, the example above can be rewritten as:
 
-```
+```js
 const types = gql`
-    type Movie {
+  type Movie {
     movieId: ID!
     title: String
     year: Int
     plot: String
     similar(first: Int = 3, offset: Int = 0): [Movie]
-        @cypher(
-        statement: """MATCH (this)-[:IN_GENRE]->(:Genre)<-[:IN_GENRE]-(o:Movie)
-                        RETURN o ORDER BY COUNT(*) DESC"""
-        )
-    }
-`
+      @cypher(
+        statement: """
+        MATCH (this)-[:IN_GENRE]->(:Genre)<-[:IN_GENRE]-(o:Movie)
+        RETURN o ORDER BY COUNT(*) DESC
+        """
+      )
+  }
+`;
 ```
 
 It's not a drastic improvement here, but for longer queries, it really improves the readability.
 
 The other solution is even better - the latest release of the [neo4j-graphql-js](https://github.com/neo4j-graphql/neo4j-graphql-js) library that I use has added an export of a `cypher` template literal tag, which also enables syntax highlighting 😍. The previous example using this new syntax instead:
 
-```
+```js
 const similarQuery = cypher`
     MATCH (this)-[:IN_GENRE]->(:Genre)<-[:IN_GENRE]-(o:Movie)
     RETURN o ORDER BY COUNT(*) DESC
-`
+`;
 
 const types = gql`
     type Movie {
@@ -66,7 +68,7 @@ const types = gql`
         plot: String
         similar(first: Int = 3, offset: Int = 0): [Movie] @cypher(${similarQuery})
     }
-`
+`;
 ```
 
 So much better 😊.

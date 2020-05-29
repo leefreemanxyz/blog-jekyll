@@ -13,7 +13,7 @@ So, after dutifully adding a few scripts from marketing to the head tag, it turn
 
 To fix this, you're asked to add a few custom events and, if you've ever wandered into some legacy codebase, there is a more than reasonable chance that you'll find component files with custom events inside them. It will look something like this:
 
-```javascript
+```jsx
 // index.js
 class SearchBar extends React.Component {
 

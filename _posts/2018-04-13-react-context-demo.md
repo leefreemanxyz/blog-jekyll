@@ -80,7 +80,7 @@ This is the `SomeContainer` component. I'm importing two components to display i
 
 This demo has a folder called `locales` that contains a json file for each language, and a `Translate` component. The json files should have all the same keys, but the values will be translated for each language.
 
-```javascript
+```jsx
 import React, { Component } from "react";
 import { LocaleContext } from "../locale-context";
 
@@ -115,7 +115,7 @@ This is my `Translate` component. The render function is simply consuming the `L
 
 I won't go into the `LanguagePicker`, it should be fairly self-explanatory. Whenever you want to render a multilingual string, you import the `Translate` component and pass it the key for the string as it is found in your .json files.
 
-```javascript
+```jsx
 import React, { Component } from "react";
 import Translate from "./locales/Translate";
 
