@@ -9,7 +9,7 @@ I was rebuilding a modal at work recently in React and introduced a small bug ca
 
 <!--more-->
 
-If you're familiar with React state (whether it be in classes or using hooks), then you should be aware of the following pattern for setting state:
+If you're familiar with React state (whether it be in classes or using hooks), then you might be aware of the following pattern for setting state:
 
 ```jsx
 const App = () => {
@@ -108,7 +108,7 @@ At the moment, there doesn't seem to be any bug here. If you click "Open Modal",
 }
 ```
 
-The `toggleModal` function is no longer working correctly. If you open the modal, and then click outside of it twice, then it starts to fade and then re-opens again. Ouch. The issue here is that my toggle function isn't idempotent. While the updater function is fine for setting a count `setCount(c => c + 1)`, clearly some functions only need to be called once, and if they are called twice, then they shouldn't have an effect. This is idempotency (see [MDN docs on idempotent HTTP requests](https://developer.mozilla.org/en-US/docs/Glossary/Idempotent)). Clicking a button to open a modal should only ever lead to it being opened. Clicking outside the modal should only ever lead to it being closed. So in this case, the updater function won't suffice, we need to wire it up separately:
+The `toggleModal` function is no longer working correctly. If you open the modal, and then click outside of it twice, then it starts to fade and then re-opens again. Ouch. The issue here is that clicking outside the modal isn't triggering an idempotent action. While the updater function is fine for setting a count `setCount(c => c + 1)`, clearly some functions only need to be called once, and if they are called twice, then they shouldn't have an effect. This is idempotency (see [MDN docs on idempotent HTTP requests](https://developer.mozilla.org/en-US/docs/Glossary/Idempotent)). Clicking a button to open a modal should only ever lead to it being opened. Clicking outside the modal should only ever lead to it being closed. So in this case, the updater function won't suffice, we need to wire it up separately:
 
 ```jsx
 const App = () => {
