@@ -22,7 +22,7 @@ gem 'rake'
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem 'jekyll-sitemap'
-  gem 'jekyll-feed', '~> 0.14'
+  gem 'jekyll-feed', '~> 0.15'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
