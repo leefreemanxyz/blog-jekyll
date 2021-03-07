@@ -9,7 +9,7 @@ So my first week of [Codaisseur's academy/bootcamp](https://www.codaisseur.com/)
 
 The week started last Sunday and ran through until Friday evening. After a lovely day in Utrecht on the Saturday followed by taking it very easy at a friend's birthday party on the Saturday evening, bright-eyed and bushy tailed, I turned up at the TQ building for 9.30am.
 
-After a brief induction session (don't be a dick, treat the building/people with respect), we were straight into HTML and CSS with Tijn. Now, I've got a fair amount of experience with HTML and CSS, so I was a bit concerned about what I would get out of the day, but luckily there was some interesting stuff to get stuck into.
+After a brief induction session (don't be a dick, treat the building/people with respect), we were straight into HTML and CSS with Tjin. Now, I've got a fair amount of experience with HTML and CSS, so I was a bit concerned about what I would get out of the day, but luckily there was some interesting stuff to get stuck into.
 
 <!--more-->
 

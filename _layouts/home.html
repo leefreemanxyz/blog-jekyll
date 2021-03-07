@@ -2,25 +2,22 @@
 layout: default
 ---
 
-<div class="home">
-
-
-  {{ content }}
-
-  <div class="post-list">
-    {% for post in site.posts %}
-      <article class="card">
-        {% assign date_format = site.imo-inu.date_format | default: "%b %-d, %Y" %}
-        
-        <h2>
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h2>
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        {{ post.excerpt }}
-      </article>
-    {% endfor %}
-    </div>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
-
+<div class="ml-0 flex flex-col w-full">
+  {% for post in site.posts %}
+  <article>
+    {% assign date_format = site.imo-inu.date_format | default: "%b %-d, %Y" %}
+    <h2>
+      <a class="block" href="{{ post.url | relative_url }}"
+        >{{ post.title | escape }}</a
+      >
+    </h2>
+    <span class="text-sm text-gray-400"
+      >{{ post.date | date: date_format }}</span
+    >
+    {{ post.excerpt }}
+  </article>
+  {% endfor %}
 </div>
+<p class="rss-subscribe">
+  subscribe <a href="{{ '/feed.xml' | relative_url }}">via RSS</a>
+</p>

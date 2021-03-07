@@ -1,9 +1,13 @@
-<div class="navbar-container">
-    <div class="navbar-content">
-        <h1><a href="/">Lee Freeman</a></h1>
-        <div class="social-icons">
-                <span>{% include icon-github.html username=site.github_username %}</span>
-                <span>{% include icon-twitter.html username=site.twitter_username %}</span>
-        </div>
+<div class="w-full max-w-5xl my-2 mx-auto">
+  <div class="flex flex-row justify-between items-center">
+    <h1 class="text-2xl font-extralight mb-0 text-brand-dark">
+      <a href="/">Lee Freeman</a>
+    </h1>
+    <div class="flex flex-row">
+      <span>{% include icon-github.html username=site.github_username %}</span>
+      <span
+        >{% include icon-twitter.html username=site.twitter_username %}</span
+      >
     </div>
+  </div>
 </div>
