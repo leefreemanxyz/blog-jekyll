@@ -3,9 +3,9 @@
   NODE_ENV = "production"
 
 [context.branch-deploy.environment]
-  JEKYLL_ENV = "staging"
+  JEKYLL_ENV = "production"
   NODE_ENV = "production"
 
 [context.deploy-preview.environment]
-  JEKYLL_ENV = "staging"
+  JEKYLL_ENV = "production"
   NODE_ENV = "production"
