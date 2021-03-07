@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.6.2'
+ruby '2.6.3'
 
 # Hello! This is where you manage which Jekyll version is used to run.
 # When you want to use a different version, change it below, save the
@@ -23,6 +23,7 @@ gem 'rake'
 group :jekyll_plugins do
   gem 'jekyll-sitemap'
   gem 'jekyll-feed', '~> 0.15'
+  gem 'jekyll-postcss'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
