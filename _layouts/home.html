@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="ml-0 flex flex-col w-full">
-  {% for post in site.posts %}
+  {% for post in paginator.posts %}
   <article>
     {% assign date_format = site.imo-inu.date_format | default: "%b %-d, %Y" %}
     <h2>
