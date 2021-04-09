@@ -24,6 +24,7 @@ github_username: leefreemanxyz
 excerpt_separator: <!--more-->
 google_analytics: UA-70750559-1
 permalink: /:year/:month/:day/:title/
+paginate: 10
 defaults:
   - scope:
       path: "assets/images"
@@ -32,6 +33,13 @@ defaults:
 
 # Build settings
 markdown: kramdown
-gems: ["jekyll-sitemap", "jekyll-feed", "kramdown", "jekyll-postcss"]
+gems:
+  [
+    "jekyll-sitemap",
+    "jekyll-feed",
+    "kramdown",
+    "jekyll-postcss",
+    "jekyll-paginate",
+  ]
 exclude:
   ["config.ru", "Gemfile", "Gemfile.lock", "vendor", "Procfile", "Rakefile"]
